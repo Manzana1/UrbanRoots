@@ -1,50 +1,74 @@
 import { useState } from 'react'
-import { plantList } from '../datas/plantList'
 import PlantItem from './PlantItem'
 import Categories from './Categories'
 import '../styles/ShoppingList.css'
+import StockManager from './StockManager'
+import { plantList } from '../datas/plantList'
 // import PortalPlantItem from '../components/PortalPlantItem'
 
-function ShoppingList({ cart, updateCart }) {
+//
+
+
+function ShoppingList({ cart, updateCart, plants, updatePlants }) {
     const [activeCategory, setActiveCategory] = useState('')
 
-    const categories = plantList.reduce(
+
+    const categories = plants.reduce(
         (acc, elem) =>
             acc.includes(elem.category) ? acc : acc.concat(elem.category),
         []
     )
     // verifier amount pour supprimer - alerte
     function addToCart(name, price, id) {
-        const currentPlantAdded = cart.find((plant) => plant.name === name)
-        if (currentPlantAdded) {
+
+        const plantAlreadyInCart = cart.find((itemInCart) => itemInCart.name === name)
+        if (plantAlreadyInCart) {
+
+            //ajuste la quantité au stock
+
+
+
+
             const cartFilteredCurrentPlant = cart.filter(
-                (plant) => plant.name !== name
+                (itemInCart) => itemInCart.name !== name
             )
 
             updateCart([
                 ...cartFilteredCurrentPlant,
-                { name, price, id, amount: currentPlantAdded.amount + 1 }
+                { name, price, id, amount: plantAlreadyInCart.amount + 1 }
             ])
         } else {
             updateCart([...cart, { name, price, id, amount: 1 }])
         }
-        // if (currentPlantAdded) {
-        //     const cartFilteredCurrentPlant = cart.filter(
-        //         (plant) => plant.name !== name
-        //     )
-        //     updateCart([
-        //         ...cartFilteredCurrentPlant,
-        //         { name, price, id, amount: currentPlantAdded.amount + 1 }
-        //     ])
-        // } else {
-        //     updateCart([...cart, { name, price, id, amount: 1 }])
-        // }
+
+        const plantsUpdated = plants.map((plant) => {
+
+            if (plant.id === id && plant.stock > 0) {
+
+                const newPlant = {
+                    cover: plant.cover,
+                    name: plant.name,
+                    water: plant.water,
+                    light: plant.light,
+                    price: plant.price,
+                    stock: plant.stock - 1
+                }
+                return newPlant;
+
+            }
 
 
 
+            return plant;
+        });
+
+        updatePlants(plantsUpdated)
 
     }
 
+
+
+    // restock lors du refresh 
 
     return (
         <div className='lmj-shopping-list'>
@@ -55,19 +79,21 @@ function ShoppingList({ cart, updateCart }) {
             />
 
             <ul className='lmj-plant-list'>
-                {plantList.map(({ id, cover, name, water, light, price, stock, category }) =>
-                    !activeCategory || activeCategory === category ? (
-                        <div key={id}>
+                {plants.map((plant) =>
+                    !activeCategory || activeCategory === plant.category ? (
+                        <div key={plant.id}>
                             <PlantItem
-                                cover={cover}
-                                name={name}
-                                water={water}
-                                light={light}
-                                price={price}
-                                stock={stock}
+                                cover={plant.cover}
+                                name={plant.name}
+                                water={plant.water}
+                                light={plant.light}
+                                price={plant.price}
+                                stock={plant.stock}
 
                             />
-                            <button onClick={() => addToCart(name, price, id)}>Ajouter</button>
+
+
+                            <button onClick={() => addToCart(plant.name, plant.price, plant.id)}>Ajouter</button>
                         </div>
                     ) : null
                 )}

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import CartItem from './CartItem'
+import StockManager from './StockManager'
 
 
 // import { plantList } from '../datas/plantList'
@@ -20,7 +21,7 @@ function Cart({ cart, updateCart }) {
 					return null;
 				}
 
-				//si la quantité est plus que 1, décrémenter la quatité
+				//si la quantité est plus que 1, décrémenter la quantité
 				return { ...item, amount: item.amount - 1 }
 			});
 
@@ -31,6 +32,7 @@ function Cart({ cart, updateCart }) {
 	//ouvre et ferme la panier
 	const [isOpen, setIsOpen] = useState(true)
 
+	//calcule le total du panier
 	const total = cart.reduce(
 		(acc, plantType) => acc + plantType.price * plantType.amount, 0
 	)
