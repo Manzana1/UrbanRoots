@@ -6,9 +6,6 @@ import StockManager from './StockManager'
 import { plantList } from '../datas/plantList'
 // import PortalPlantItem from '../components/PortalPlantItem'
 
-//
-
-
 function ShoppingList({ cart, updateCart, plants, updatePlants }) {
     const [activeCategory, setActiveCategory] = useState('')
 
@@ -22,29 +19,13 @@ function ShoppingList({ cart, updateCart, plants, updatePlants }) {
     function addToCart(name, price, id) {
 
         const plantAlreadyInCart = cart.find((itemInCart) => itemInCart.name === name)
-        if (plantAlreadyInCart) {
+        let noStock = false
 
-            //ajuste la quantité au stock
-
-
-
-
-            const cartFilteredCurrentPlant = cart.filter(
-                (itemInCart) => itemInCart.name !== name
-            )
-
-            updateCart([
-                ...cartFilteredCurrentPlant,
-                { name, price, id, amount: plantAlreadyInCart.amount + 1 }
-            ])
-        } else {
-            updateCart([...cart, { name, price, id, amount: 1 }])
-        }
-
+        // trouver et updater la valeur du stock
         const plantsUpdated = plants.map((plant) => {
-
             if (plant.id === id && plant.stock > 0) {
 
+                //essayer modifier plante actuelle
                 const newPlant = {
                     cover: plant.cover,
                     name: plant.name,
@@ -54,16 +35,36 @@ function ShoppingList({ cart, updateCart, plants, updatePlants }) {
                     stock: plant.stock - 1
                 }
                 return newPlant;
-
+            } else if (plant.id === id) {
+                noStock = true
             }
-
-
-
             return plant;
         });
 
         updatePlants(plantsUpdated)
 
+        if (noStock) {
+            alert('no stock');
+        } else {
+
+            if (plantAlreadyInCart) {
+
+                // Récupere items qui n'ont pas changés
+                const cartFilteredCurrentPlant = cart.filter(
+                    (itemInCart) => itemInCart.name !== name
+                )
+
+                // incrémente le compteur
+                plantAlreadyInCart.amount = plantAlreadyInCart.amount + 1;
+
+                updateCart([
+                    ...cartFilteredCurrentPlant,
+                    plantAlreadyInCart
+                ])
+            } else {
+                updateCart([...cart, { name, price, id, amount: 1 }])
+            }
+        }
     }
 
 
