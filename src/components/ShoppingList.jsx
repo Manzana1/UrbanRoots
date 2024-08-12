@@ -25,13 +25,9 @@ function ShoppingList({ cart, updateCart, plants, updatePlants }) {
         const plantsUpdated = plants.map((plant) => {
             if (plant.id === id && plant.stock > 0) {
 
-                //essayer modifier plante actuelle
+                //essayer modifier plante actuelle - ok
                 const newPlant = {
-                    cover: plant.cover,
-                    name: plant.name,
-                    water: plant.water,
-                    light: plant.light,
-                    price: plant.price,
+                    ...plant,
                     stock: plant.stock - 1
                 }
                 return newPlant;
