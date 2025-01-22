@@ -31,7 +31,7 @@ function App() {
 
 			<div className='lmj-layout-inner'>
 
-				<Cart cart={cart} updateCart={updateCart} />
+				<Cart cart={cart} updateCart={updateCart} plants={plants} updatePlants={updatePlants} />
 				<ShoppingList plants={plants} cart={cart} updateCart={updateCart} updatePlants={updatePlants} />
 
 			</div>

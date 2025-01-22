@@ -1,16 +1,19 @@
 import { useState, useEffect } from 'react'
 import CartItem from './CartItem'
-import StockManager from './StockManager'
+
 
 
 // import { plantList } from '../datas/plantList'
 import '../styles/Cart.css'
 
-function Cart({ cart, updateCart }) {
+function Cart({ cart, updateCart, plants, updatePlants }) {
 
 	//il faut décrémenter le stock
 	//supprime un item
 	function removeItem(id) {
+
+		//met a jour le compteur dans le panier
+
 		updateCart(prevCart => {
 			const updatedCartUnfiltered = prevCart.map(item => {
 				if (item.id !== id) {
@@ -28,6 +31,19 @@ function Cart({ cart, updateCart }) {
 			const updatedCart = updatedCartUnfiltered.filter(item => item !== null);
 			return updatedCart;
 		})
+
+		// mise a jour de l'inventaire ...
+		//nouvelle prop de stock
+
+		const plant = plants.find(plant => {
+			return plant.id === id
+		})
+		plant.stock += 1;
+
+		//setter plantes il faut faire comme shopping - props udaplants et plants
+
+		updatePlants(plants);
+
 	}
 	//ouvre et ferme la panier
 	const [isOpen, setIsOpen] = useState(true)

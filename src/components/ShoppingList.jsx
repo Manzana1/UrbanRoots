@@ -24,15 +24,12 @@ function ShoppingList({ cart, updateCart, plants, updatePlants }) {
         // trouver et updater la valeur du stock
         const plantsUpdated = plants.map((plant) => {
             if (plant.id === id && plant.stock > 0) {
-
-                //essayer modifier plante actuelle - ok
-                const newPlant = {
-                    ...plant,
-                    stock: plant.stock - 1
-                }
-                return newPlant;
+                plant.stock -= 1;
+                //essayer modifier plante actuelle - ok 
+                //pas besoin d'en créer un nouveau - just a modifier le stock 12 aout
             } else if (plant.id === id) {
                 noStock = true
+
             }
             return plant;
         });

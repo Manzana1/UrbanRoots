@@ -1,44 +1,37 @@
-import CareScale from './CareScale'
-import '../styles/PlantItem.css'
-import { useState } from 'react'
+import CareScale from "./CareScale";
+import "../styles/PlantItem.css";
+import { useState } from "react";
 
 function handleClick(plantName) {
-	alert(`Vous voulez acheter 1 ${plantName}? Très bon choix 🌱✨`)
+  alert(`Vous voulez acheter 1 ${plantName}? Très bon choix 🌱✨`);
 }
-
-
 
 function PlantItem({ cover, name, water, light, price, stock }) {
+  // hidden et setHidden c'est pour le hover
+  const [hidden, setHidden] = useState(true);
 
-	// hidden et setHidden c'est pour le hover
-	const [hidden, setHidden] = useState(true)
+  return (
+    <li className="lmj-plant-item" onClick={() => handleClick(name)}>
+      {hidden ? null : name}
+      <span className="lmj-plant-item-price">{price}€</span>
+      <img
+        className="lmj-plant-item-cover"
+        src={cover}
+        alt={`${name} cover`}
+        //on ajoute le hover - avec le texte qui apparait et disparait
+        // onMouseEnter={() => setHidden(false)}
+        // onMouseLeave={() => setHidden(true)}
+      />
 
-
-
-	return (
-
-		<li className='lmj-plant-item' onClick={() => handleClick(name)}>
-
-			{hidden ? null : name}
-			<span className='lmj-plant-item-price'>{price}€</span>
-			<img className='lmj-plant-item-cover' src={cover} alt={`${name} cover`}
-				//on ajoute le hover - avec le texte qui apparait et disparait
-				onMouseEnter={() => setHidden(false)}
-				onMouseLeave={() => setHidden(true)} />
-
-
-			{/* en ajoutant la plante, le stock descend, et affiche qut de stock */}
-			<span>{name}</span>
-			<span>stock: {stock}</span>
-			<div>
-				<CareScale careType='water' scaleValue={water} />
-				<CareScale careType='light' scaleValue={light} />
-			</div>
-
-		</li>
-
-	)
+      {/* en ajoutant la plante, le stock descend, et affiche qut de stock */}
+      <span>{name}</span>
+      <span>stock: {stock}</span>
+      <div>
+        <CareScale careType="water" scaleValue={water} />
+        <CareScale careType="light" scaleValue={light} />
+      </div>
+    </li>
+  );
 }
 
-
-export default PlantItem
+export default PlantItem;
