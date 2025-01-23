@@ -1,4 +1,10 @@
 .lmj-layout-inner {
-    display: flex;
-    flex-direction: row;
+  display: flex;
+  flex-direction: row;
+}
+
+@media (max-width: 480px) {
+  .lmj-layout-inner {
+    display: block;
+  }
 }
