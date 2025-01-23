@@ -42,4 +42,7 @@
   .lmj-cart-toggle-button {
     align-self: center;
   }
+  .lmj-cart-closed {
+    text-align: center;
+  }
 }
