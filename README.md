@@ -22,7 +22,7 @@ Je voulais aller au-delà de la simple formation en explorant les possibilités 
 
 - **Organisation des styles** : J'ai travaillé avec des fichiers CSS séparés pour garder le code propre et lisible.
 
-- ## Mon défi personnel : le compteur
+## Mon défi personnel : le compteur
 
 Un des aspects que j'ai le plus aimé, c'était de sortir un peu du cadre de la formation et de créer un compteur personnalisé. Cette fonctionnalité n'était pas prévue, mais elle m'a permis de jouer avec React et d'apprendre à gérer des cas pratiques. Le compteur permet de gérer efficacement le stock des plantes et s'adapte automatiquement lorsqu'un article est épuisé.
 
