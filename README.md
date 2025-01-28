@@ -10,7 +10,7 @@ Je voulais aller au-delà de la simple formation en explorant les possibilités 
 
 - **Catalogue de plantes** : Une liste d'articles avec leurs noms, prix et descriptions.
 
-- **Gestion du panier** : Vous pouvez ajouter ou retirer des articles comme si vous faisiez vos courses.
+- **Gestion du panier** : Vous pouvez ajouter ou retirer des articles du panier.
 
 - **Compteur personnalisé** : Cette fonctionnalité permet non seulement de suivre les quantités d'articles ajoutées au panier, mais aussi de gérer le stock des plantes. Si une plante est en rupture de stock, le compteur s'adapte et empêche tout ajout supplémentaire.
 
