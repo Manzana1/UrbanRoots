@@ -30,7 +30,7 @@ Pour essayer le projet
 
 1. Clonez le dépôt :
 
-git clone https://github.com/votre-utilisateur/boutique-plantes.git
+git clone https://github.com/Manzana1/UrbanRoots.git
 
 2. Ouvrez le dossier du projet :
 
