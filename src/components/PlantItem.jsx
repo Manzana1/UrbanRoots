@@ -13,7 +13,7 @@ function PlantItem({ cover, name, water, light, price, stock }) {
   return (
     <li className="lmj-plant-item" onClick={() => handleClick(name)}>
       {hidden ? null : name}
-      <span className="lmj-plant-item-price">{price}€</span>
+      <span className="lmj-plant-item-price">${price}</span>
       <img
         className="lmj-plant-item-cover"
         src={cover}
