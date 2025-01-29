@@ -81,7 +81,7 @@ function ShoppingList({ cart, updateCart, plants, updatePlants }) {
                 className="lmj-button-list"
                 onClick={() => addToCart(plant.name, plant.price, plant.id)}
               >
-                Add
+                Add to the cart +
               </button>
             </div>
           ) : null

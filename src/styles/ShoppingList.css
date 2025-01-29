@@ -5,16 +5,29 @@
 .lmj-plant-list {
   list-style-type: none;
   padding: 32px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  display: grid;
+  /* flex-wrap: wrap; */
+  justify-content: space-evenly;
+  row-gap: 15px;
+  grid-template-columns: repeat(3, 0fr);
 }
 .lmj-button-list {
-  background-color: #21b472;
-  width: 50px;
-  height: 28px;
-  border-radius: 6px;
+  background-color: white;
   border: none;
-  color: white;
-  cursor: pointer;
+  color: black;
+  font-size: medium;
+  background-color: rgb(194, 230, 189);
+  border-radius: 6px;
+  padding: 7px;
+}
+
+.lmj-button-list:hover {
+  color: green;
+  opacity: 0.7;
+}
+
+@media (max-width: 800px) {
+  .lmj-plant-list {
+    display: inline-block;
+  }
 }
