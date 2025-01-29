@@ -28,6 +28,7 @@
 
 @media (max-width: 800px) {
   .lmj-plant-list {
-    display: inline-block;
+    display: flex;
+    flex-wrap: wrap;
   }
 }
