@@ -12,13 +12,12 @@
   grid-template-columns: repeat(3, 0fr);
 }
 .lmj-button-list {
-  background-color: white;
-  border: none;
   color: black;
   font-size: medium;
-  background-color: rgb(194, 230, 189);
+  background-color: rgb(255 255 255);
   border-radius: 6px;
   padding: 7px;
+  border: outset 2px #e5e5e5;
 }
 
 .lmj-button-list:hover {
