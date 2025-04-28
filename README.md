@@ -1,4 +1,4 @@
-🇫🇷 Ce README est disponible en français. English version follows below.
+FR Ce README est disponible en français. English version follows below.
 
 # Online Plant Store - Simulation
 
